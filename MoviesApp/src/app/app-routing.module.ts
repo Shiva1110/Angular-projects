@@ -1,7 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { RegistrationPageComponent } from './components/registration-page/registration-page.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: 'register', component: RegistrationPageComponent},
+  {path: 'login', component: LoginPageComponent},
+  {path: 'forgot-password', component: ForgotPasswordComponent},
+  {path: '', component: LoginPageComponent, pathMatch: 'full'},
+  {path: '**', component: PageNotFoundComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

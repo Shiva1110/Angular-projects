@@ -1,0 +1,135 @@
+@import "../../../styles.scss";
+
+.box {
+    width: 70vw;
+    height: 85vh;
+    margin: auto;
+    margin-top: 8vh;
+    display: flex;
+    border-radius: 50px;
+    box-shadow: rgb(0, 0, 0) 0px 30px 90px;
+    color: white;
+
+    .left-side {
+        width: 35%;
+        height: 100%;
+        background-color: $primary-button-color;
+        border: 5px solid darken($primary-button-color, 3%);
+        border-right: 0;
+        box-sizing: border-box;
+        border-radius: 50px 0 0 50px;
+        padding: 5% 0 4% 4%;
+
+        img {
+            width: 55%;
+        }
+
+        p {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 0;
+            margin-top: 40%;
+            margin-bottom: 10%;
+        }
+
+        .btn-group {
+            letter-spacing: 1px;
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 50%;
+            
+            a {
+                margin: 6%;
+                color: #726C80;
+                text-decoration: none;
+            }
+            a.active {
+                color: white;
+                text-decoration: underline;
+                text-underline-offset: 5px;
+                text-decoration-thickness: 2px;
+                font-size: 22px;
+            }
+        }
+
+        small {
+            color: #726C80;
+            font-weight: 800;
+        }
+    }
+
+    .right-side {
+        width: 65%;
+        height: 100%;
+        background-color: #1F272F;
+        border: 5px solid darken(#1F272F, 3%);
+        border-left: 0;
+        box-sizing: border-box;
+        border-radius: 0 50px 50px 0;
+        padding: 4% 0 4% 8%;
+
+        p {
+            font-size: 35px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .register, .login {
+            display: flex;
+            flex-direction: column;
+
+            input {
+                border: none;
+                outline: none;
+                background-color: #2F3841;
+                box-sizing: border-box;
+                width: 75%;
+                padding: 13px;
+                font-size: 15px;
+                color: whitesmoke;
+                border-radius: 5px;
+                margin-bottom: 3%;
+            }
+
+            label {
+                color: #5C646A;
+                font-size: 15px;
+                font-weight: 700;
+                margin-bottom: 2px;
+            }
+
+            button {
+                width: 20%;
+                border: none;
+                outline: none;
+                border-radius: 5px;
+                color: black;
+                background-color: white;
+                padding: 10px;
+                height: 5%;
+                font-size: 20px;
+                font-weight: 800;
+                margin-top: 3%;
+                cursor: pointer;
+            }
+        }
+
+        .login {
+            input {
+                padding: 15px;
+                font-size: 18px;
+                margin-bottom: 5%;
+            }
+
+            label {
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+
+            button {
+                margin-top: 12%;
+            }
+        }
+    }
+}

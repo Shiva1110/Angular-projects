@@ -1,0 +1,40 @@
+<div class="box">
+    <div class="left-side">
+        <img src="/assets/moviedb-dark.svg" alt="logo here">
+        <p *ngIf="page === 'login'">Hi There! Welcome Back.</p>
+        <p *ngIf="page === 'register'">New User Registration.</p>
+        <div class="btn-group">
+            <a routerLink="/login" routerLinkActive="active">LOG IN</a>
+            <a routerLink="/register" routerLinkActive="active">SIGN UP</a>
+        </div>
+        <small>TERMS OF USE AND CONTRAINDICATIONS</small>
+    </div>
+    <div class="right-side">
+        <p *ngIf="page === 'login'" style="margin-bottom: 15%;">LOG IN</p>
+        <p *ngIf="page === 'register'">SIGN UP</p>
+        <form *ngIf="page === 'register'" [formGroup]="registrationForm" class="register">
+            <label for="name">Username</label>
+            <input type="text" name="name" id="name">
+
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email">
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+
+            <label for="repassword">Re-enter Password</label>
+            <input type="password" name="repassword" id="repassword">
+
+            <button (click)="registerUser()">Register</button>
+        </form>
+        <form *ngIf="page === 'login'" [formGroup]="loginForm" class="login">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email">
+
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+
+            <button (click)="logInUser()">Log In</button>
+        </form>
+    </div>
+</div>
