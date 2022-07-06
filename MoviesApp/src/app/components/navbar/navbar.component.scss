@@ -1,0 +1,41 @@
+@import "../../../styles.scss";
+
+nav {
+    color: white;
+    height: 100vh;
+    width: 18vw;
+    border-right: 1.5px solid rgba(221, 221, 221, 0.11);
+
+    img {
+        width: 135px;
+        padding: 19%;
+    }
+
+    .category {
+        padding: 0 0 0 19%;
+
+        p {
+            margin: 0;
+            padding: 0 0 8% 0;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            li {
+                list-style-type: none;
+                padding: 7% 1.5%;
+                display: flex;
+                align-items: center;
+
+                fa-icon {
+                    padding-right: 3%;
+                }
+            }
+        }
+
+        .general {
+            padding-top: 19%;
+        }
+    }
+}

@@ -7,6 +7,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LoginRegisterCommonComponent } from './login-register-common/login-register-common.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -16,12 +18,17 @@ import { LoginRegisterCommonComponent } from './login-register-common/login-regi
     LoginPageComponent,
     PageNotFoundComponent,
     ForgotPasswordComponent,
-    LoginRegisterCommonComponent
+    LoginRegisterCommonComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
     RouterModule
+  ],
+  exports: [
+    NavbarComponent
   ]
 })
 export class ComponentsModule { }

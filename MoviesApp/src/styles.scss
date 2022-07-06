@@ -5,13 +5,15 @@ $background-color: #F8F9D7;
 $primary-button-color: #3C334E;
 $secondary-button-color: #B2C8DF;
 $secondary-color: #C4D7E0;
+$error-color: #F64968;
+$success-color: rgb(69, 141, 69);
 
 html, body {
-    padding: 0;
-    margin: 0;
-    background-color: #141E27;
+    height: 100%;
 }
 
-* {
+body {
+    padding: 0;
+    margin: 0;
     font-family: 'Nunito', Arial, Helvetica, sans-serif;
 }

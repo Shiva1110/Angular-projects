@@ -1,40 +1,62 @@
-<div class="box">
-    <div class="left-side">
-        <img src="/assets/moviedb-dark.svg" alt="logo here">
-        <p *ngIf="page === 'login'">Hi There! Welcome Back.</p>
-        <p *ngIf="page === 'register'">New User Registration.</p>
-        <div class="btn-group">
-            <a routerLink="/login" routerLinkActive="active">LOG IN</a>
-            <a routerLink="/register" routerLinkActive="active">SIGN UP</a>
+<div class="main">
+    <div class="box">
+        <div class="left-side">
+            <img src="/assets/moviedb-dark.svg" alt="logo here">
+            <p *ngIf="page === 'login'">Hi There! Welcome Back.</p>
+            <p *ngIf="page === 'register'">New User Registration.</p>
+            <div class="btn-group">
+                <a routerLink="/login" routerLinkActive="active">LOG IN</a>
+                <a routerLink="/register" routerLinkActive="active">SIGN UP</a>
+            </div>
+            <small>TERMS OF USE AND CONTRAINDICATIONS</small>
         </div>
-        <small>TERMS OF USE AND CONTRAINDICATIONS</small>
-    </div>
-    <div class="right-side">
-        <p *ngIf="page === 'login'" style="margin-bottom: 15%;">LOG IN</p>
-        <p *ngIf="page === 'register'">SIGN UP</p>
-        <form *ngIf="page === 'register'" [formGroup]="registrationForm" class="register">
-            <label for="name">Username</label>
-            <input type="text" name="name" id="name">
+        <div class="right-side">
+            <p *ngIf="page === 'login'" style="margin: 4% 0 13% 0;">LOG IN</p>
+            <p *ngIf="page === 'register'">SIGN UP</p>
+            <form *ngIf="page === 'register'" [formGroup]="registrationForm" class="register">
+                <label for="name">Username</label>
+                <input formControlName="username" type="text" name="name" id="name">
+                <small *ngIf="registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched">This field is required</small>
+    
+                <label for="email">Email</label>
+                <input formControlName="email" type="text" name="email" id="email">
+                <small *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched && registrationForm.get('email')?.hasError('required')">This field is required</small>
+                <small *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched && registrationForm.get('email')?.hasError('pattern')">Enter valid email</small>
+    
+                <label for="password">Password</label>
+                <div class="password">
+                    <fa-icon (click)="hideRegPassIcon()" *ngIf="hideRegPass !== true" [icon]="faEye" class="pass-eye"></fa-icon>
+                    <fa-icon (click)="hideRegPassIcon()" *ngIf="hideRegPass === true" [icon]="faEyeSlash" class="pass-eye"></fa-icon>
+                    <input formControlName="password" [type]="hideRegPass ? 'password' : 'text'" name="password" id="password">
+                    <small *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">This field is required</small>
+                </div>
 
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email">
+                <label for="repassword">Re-enter Password</label>
+                <div class="password">
+                    <fa-icon (click)="hideRegRepassIcon()" *ngIf="hideRegRepass !== true" [icon]="faEye" class="repass-eye"></fa-icon>
+                    <fa-icon (click)="hideRegRepassIcon()" *ngIf="hideRegRepass === true" [icon]="faEyeSlash" class="repass-eye"></fa-icon>
+                    <input formControlName="rePassword" [type]="hideRegRepass ? 'password' : 'text'" name="repassword" id="repassword">
+                    <small *ngIf="registrationForm.get('rePassword')?.invalid && registrationForm.get('rePassword')?.touched && registrationForm.get('rePassword')?.hasError('required')">This field is required</small>
+                    <small *ngIf="registrationForm.get('rePassword')?.invalid && registrationForm.get('rePassword')?.touched && registrationForm.get('rePassword')?.hasError('passwordMatch')">Passwords do not match</small>
+                </div>
 
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-
-            <label for="repassword">Re-enter Password</label>
-            <input type="password" name="repassword" id="repassword">
-
-            <button (click)="registerUser()">Register</button>
-        </form>
-        <form *ngIf="page === 'login'" [formGroup]="loginForm" class="login">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email">
-
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-
-            <button (click)="logInUser()">Log In</button>
-        </form>
+                <button [disabled]="registrationForm.invalid" (click)="registerUser()">Register</button>
+            </form>
+            <form *ngIf="page === 'login'" [formGroup]="loginForm" class="login">
+                <label for="email">Email</label>
+                <input formControlName="email" type="text" name="email" id="email">
+                <small *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">This field is required</small>
+    
+                <label for="password">Password</label>
+                <div class="password">
+                    <fa-icon (click)="hideIcon()" *ngIf="hide !== true" [icon]="faEye"></fa-icon>
+                    <fa-icon (click)="hideIcon()" *ngIf="hide === true" [icon]="faEyeSlash"></fa-icon>
+                    <input formControlName="password" [type]="hide ? 'password' : 'text'" name="password" id="password">
+                    <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">This field is required</small>
+                </div>
+    
+                <button [disabled]="loginForm.invalid" (click)="logInUser()">Log In</button>
+            </form>
+        </div>
     </div>
 </div>
