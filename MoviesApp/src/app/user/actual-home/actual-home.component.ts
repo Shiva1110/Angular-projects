@@ -10,7 +10,6 @@ import { ITrendMovieRes, MoviesService } from 'src/app/services/movies.service';
 export class ActualHomeComponent implements OnInit, AfterViewInit {
 
   @ViewChildren('topFiveHtml') topFiveHtml!: QueryList<ElementRef>;
-  @ViewChildren('topFiveInfo') topFiveInfo!: QueryList<ElementRef>;
 
   topFive: ITrendMovieRes[] = [];
   imagePath: string = 'https://image.tmdb.org/t/p';
@@ -43,10 +42,6 @@ export class ActualHomeComponent implements OnInit, AfterViewInit {
       item.nativeElement.hidden = true;
       if(i+1 === this.imageIndex) item.nativeElement.hidden = false;
     });
-    this.topFiveInfo?.forEach((item, i) => {
-      item.nativeElement.hidden = true;
-      if(i+1 === this.imageIndex) item.nativeElement.hidden = false;
-    });
   }
 
   autoSlideImages() {
@@ -58,10 +53,6 @@ export class ActualHomeComponent implements OnInit, AfterViewInit {
       this.imageIndex = 1;
     }
     this.topFiveHtml?.forEach((item, i) => {
-      item.nativeElement.hidden = true;
-      if(i+1 === this.imageIndex) item.nativeElement.hidden = false;
-    });
-    this.topFiveInfo?.forEach((item, i) => {
       item.nativeElement.hidden = true;
       if(i+1 === this.imageIndex) item.nativeElement.hidden = false;
     });
