@@ -2,18 +2,18 @@
     <img src="/assets/moviedb-black.svg" alt="logo here">
     <div class="category">
         <p>MENU</p>
-        <ul>
-            <li><fa-icon [icon]="faHouse"></fa-icon><a>Home</a></li>
-            <li><fa-icon [icon]="faMagnifyingGlass"></fa-icon><a>Search</a></li>
-            <li><fa-icon [icon]="faStar"></fa-icon><a>Favourites</a></li>
-            <li><fa-icon [icon]="faStopwatch"></fa-icon><a>Coming Soon</a></li>
-        </ul>
+        <div class="menu-items">
+            <a routerLink="/user/home" routerLinkActive="active"><fa-icon [icon]="faHouse"></fa-icon>Home</a>
+            <a routerLink="/user/search-movie" routerLinkActive="active"><fa-icon [icon]="faMagnifyingGlass"></fa-icon>Search</a>
+            <a routerLink="/user/favourites" routerLinkActive="active"><fa-icon [icon]="faStar"></fa-icon>Favourites</a>
+            <a routerLink="/user/coming-soon" routerLinkActive="active"><fa-icon [icon]="faStopwatch"></fa-icon>Coming Soon</a>
+        </div>
     </div>
     <div class="category">
         <p class="general">GENERAL</p>
-        <ul>
-            <li><fa-icon [icon]="faGear"></fa-icon><a>Settings</a></li>
-            <li><fa-icon [icon]="faRightFromBracket"></fa-icon><a>Log Out</a></li>
-        </ul>
+        <div class="menu-items">
+            <a routerLink="/user/settings" routerLinkActive="active"><fa-icon [icon]="faGear"></fa-icon>Settings</a>
+            <a><fa-icon [icon]="faRightFromBracket"></fa-icon>Log Out</a>
+        </div>
     </div>
 </nav>

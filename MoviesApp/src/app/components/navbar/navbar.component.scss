@@ -17,23 +17,40 @@ nav {
         p {
             margin: 0;
             padding: 0 0 8% 0;
+            color: #9696A3;
+            font-weight: 800;
         }
 
-        ul {
-            margin: 0;
-            padding: 0;
-            li {
-                list-style-type: none;
-                padding: 7% 1.5%;
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+
+            a {
                 display: flex;
                 align-items: center;
+                text-decoration: none;
+                margin: 7% 1.5%;
+                margin-right: 0;
+                color: #696972;
+                font-weight: 600;
 
                 fa-icon {
+                    font-size: 18px;
                     padding-right: 3%;
                 }
             }
-        }
 
+            a.active {
+                border-right: 4px solid #D22F27;
+                box-sizing: border-box;
+                color: white;
+
+                fa-icon {
+                    color: #D22F27;
+                }
+            }
+        }
+                
         .general {
             padding-top: 19%;
         }

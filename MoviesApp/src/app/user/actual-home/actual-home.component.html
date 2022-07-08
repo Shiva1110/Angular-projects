@@ -1,0 +1,16 @@
+<div class="home-main">
+    <div class="top-five">
+        <div class="card">
+            <img #topFiveHtml *ngFor="let img of topFive; let i = index" [src]="imagePath+'/w780'+img?.backdrop_path" alt="backdrop" [id]="i+1">
+            <div (click)="slideImages(-1)" class="slide left-arrow">
+                <fa-icon [icon]="faAngleLeft"></fa-icon>
+            </div>
+            <div (click)="slideImages(1)" class="slide right-arrow">
+                <fa-icon [icon]="faAngleRight"></fa-icon>
+            </div>
+            <div #topFiveInfo *ngFor="let movie of topFive" class="movie-info">
+                <p>{{ movie?.original_title }}</p>
+            </div>
+        </div>
+    </div>
+</div>
