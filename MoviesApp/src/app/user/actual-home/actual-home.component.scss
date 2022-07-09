@@ -1,36 +1,83 @@
+@import "../../../styles.scss";
+
 .home-main {
+    display: flex;
+    flex-direction: column;
+
     .top-five {
         width: 100%;
-        height: 47vh;
-        border-radius: 15px;
+        height: 50vh;
+        border-radius: 40px;
         overflow: hidden;
         position: relative;
 
         .card {
             width: 100%;
             height: 100%;
-            border-radius: 15px;
+            border-radius: 40px;
             position: relative;
             
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                border-radius: 15px;
+                border-radius: 40px;
                 opacity: 0.6;
                 animation: zoom 5s linear infinite;
             }
 
             .movie-info {
                 position: absolute;
+                box-sizing: border-box;
+                width: 100%;
                 top: 50%;
                 padding: 5%;
 
                 p {
                     margin: 0;
-                    font-size: 30px;
-                    font-weight: 800;
+                    font-size: 38px;
+                    font-weight: 900;
                     text-transform: uppercase;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+
+                small {
+                    color: #B4B4B4;
+                    text-transform: uppercase;
+                    font-weight: 800;
+                    font-size: 15px;
+                }
+
+                button {
+                    display: block;
+                    border: none;
+                    outline: none;
+                    background-color: darken(#7952ce, 5%);
+                    border-radius: 10px;
+                    color: white;
+                    margin-top: 1.5%;
+                    padding: 1.5%;
+                    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+                    font-size: 13px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    transition: 0.3s all ease 0s;
+                    width: 20%;
+
+                    fa-icon {
+                        padding-right: 3%;
+                    }
+                }
+
+                button:hover {
+                    transform: scale(1.05);
+                }
+
+                .rating {
+                    padding-left: 2%;
+                    font-weight: 600;
                 }
             }
         }
@@ -62,6 +109,116 @@
         .right-arrow {
             right: 5%;
         }
+    }
+
+    .top-daily {
+        width: 100%;
+        padding: 5% 0;
+        padding-bottom: 0;
+        
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 3% 0;
+
+            h3 {
+                margin: 0;
+                padding: 0;
+                font-size: 22px;
+            }
+
+            .arrows {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                width: 20%;
+
+                .left-arrow, .right-arrow {
+                    position: relative;
+                    width: 42px;
+                    height: 42px;
+                    box-sizing: border-box;
+                    border: 2px solid white;
+                    border-radius: 100px;
+                    transition: background-color 300ms ease;
+                    cursor: pointer;
+
+                    fa-icon {
+                        position: absolute;
+                        top: 25%;
+                        right: 39.5%;
+                    }
+                }
+
+                .left-arrow:hover, .right-arrow:hover {
+                    background-color: white;
+                    color: black;
+                }
+
+                .left-arrow {
+                    margin-right: 10%;
+                }
+            }
+        }
+
+        .daily-collection {
+            display: flex;
+            justify-content: space-between;
+            flex-flow: wrap;
+            transition: 0.3s all ease 0;
+
+            .movie-card {
+                width: 23%;
+                height: 35vh;
+                border-radius: 20px;
+                animation: move 2s ease;
+                transition: all 0.4s ease;
+                position: relative;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 20px;
+                    transition: all 0.4s ease;
+                }
+
+                p {
+                    position: absolute;
+                    top: 50%;
+                    left: 10%;
+                    display: none;
+                }
+            }
+
+            .movie-card:hover {
+                cursor: pointer;
+                transform: scale(1.07);
+
+                img {
+                    opacity: 0.5;
+                }
+
+                p {
+                    display: block;
+                    animation: move 0.4s ease;
+                }
+            }
+        }
+    }
+
+    .top-daily:last-child {
+        padding-bottom: 5%;
+    }
+}
+
+@keyframes move {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 

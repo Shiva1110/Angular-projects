@@ -6,6 +6,8 @@ nav {
     width: 18vw;
     border-right: 1.5px solid rgba(221, 221, 221, 0.11);
     position: sticky;
+    overflow-y: auto;
+    overflow-x: hidden;
     top: 0;
 
     img {
@@ -36,6 +38,7 @@ nav {
                 margin-right: 0;
                 color: #696972;
                 font-weight: 600;
+                transition: 0.3s ease-out;
 
                 fa-icon {
                     font-size: 18px;
@@ -43,13 +46,22 @@ nav {
                 }
             }
 
-            a.active {
-                border-right: 4px solid #D22F27;
+            a.active:hover, a.active {
+                border-right: 4px solid #a38ad8;
                 box-sizing: border-box;
                 color: white;
 
                 fa-icon {
-                    color: #D22F27;
+                    color: #a38ad8;
+                }
+            }
+
+            a:hover {
+                box-sizing: border-box;
+                color: white;
+
+                fa-icon {
+                    color: white;
                 }
             }
         }

@@ -29,6 +29,7 @@ export interface ITrendMovieRes {
   original_title?: string;
   release_date?: string;
   video?: boolean;
+  genres?: string[];
 }
 
 @Injectable({
@@ -38,7 +39,9 @@ export class MoviesService {
 
   constructor(private http: HttpClient) { }
 
-  getTrendingMovies(time: string): Observable<ITrendMovies> {
-    return this.http.get<ITrendMovies>(`https://api.themoviedb.org/3/trending/movie/${time}?api_key=bbaeb64e592f1b183c66c701b48e5cd3`)
+  getTrendingMovies(time: string, page?: number): Observable<ITrendMovies> {
+    if(page)
+    return this.http.get<ITrendMovies>(`https://api.themoviedb.org/3/trending/movie/${time}?api_key=bbaeb64e592f1b183c66c701b48e5cd3&page=${page}`);
+    return this.http.get<ITrendMovies>(`https://api.themoviedb.org/3/trending/movie/${time}?api_key=bbaeb64e592f1b183c66c701b48e5cd3`);
   }
 }

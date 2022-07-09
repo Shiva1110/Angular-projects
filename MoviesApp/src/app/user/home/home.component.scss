@@ -10,7 +10,14 @@
     .main-content {
         color: white;
         width: 52vw;
-        padding: 4% 6% 0 6%;
+        padding: 4% 5% 0 5%;
         border-right: 1.5px solid rgba(221, 221, 221, 0.11);
+    }
+
+    .right-content {
+        color: white;
+        position: sticky;
+        top: 0;
+        align-self: flex-start;
     }
 }
