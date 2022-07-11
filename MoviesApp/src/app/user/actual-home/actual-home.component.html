@@ -31,7 +31,16 @@
         <div class="daily-collection">
             <div *ngFor="let movie of topMoviesDaily; let i = index" class="movie-card">
                 <img [src]="imagePath+'/w780'+movie?.poster_path" alt="backdrop">
-                <p>{{ movie?.vote_average | number : '1.1-1' }}</p>
+                <div class="movie-det">
+                    <div class="details">
+                        <h4>{{ movie?.original_title }}</h4>
+                        <div>
+                            <p>Rating: {{ movie?.vote_average | number : '1.1-1' }}</p>
+                            <p>Votes: {{ movie?.vote_count }}</p>
+                        </div>
+                    </div>
+                </div>
+                <button><fa-icon [icon]="faStar"></fa-icon></button>
             </div>
         </div>
     </div>
@@ -50,7 +59,16 @@
         <div class="daily-collection">
             <div *ngFor="let movie of topMoviesWeekly; let i = index" class="movie-card">
                 <img [src]="imagePath+'/w780'+movie?.poster_path" alt="backdrop">
-                <p>{{ movie?.vote_average | number : '1.1-1' }}</p>
+                <div class="movie-det">
+                    <div class="details">
+                        <h4>{{ movie?.original_title }}</h4>
+                        <div>
+                            <p>Rating: {{ movie?.vote_average | number : '1.1-1' }}</p>
+                            <p>Votes: {{ movie?.vote_count }}</p>
+                        </div>
+                    </div>
+                </div>
+                <button><fa-icon [icon]="faStar"></fa-icon></button>
             </div>
         </div>
     </div>

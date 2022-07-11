@@ -6,6 +6,15 @@
         <router-outlet></router-outlet>
     </div>
     <div class="right-content">
-        Hello <br> Hello<br> Hello<br> Hello<br> Hello<br> Hello<br> Hello<br> Hello<br> Hello<br> Hello<br> Hello
+        <div class="popular">
+            <h4>Popular Artists</h4>
+            <div class="act-card" *ngFor="let actor of topActors; let i = index">
+                <img [src]="imagePath+'/w780'+actor?.profile_path" alt="">
+                <div class="act-info">
+                    <p>{{ actor?.name }}</p>
+                    <small>Points: {{ actor?.popularity | number : '1.1-1' }}</small>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

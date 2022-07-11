@@ -40,6 +40,11 @@ nav {
                 font-weight: 600;
                 transition: 0.3s ease-out;
 
+                p {
+                    margin: 0;
+                    padding: 0;
+                }
+
                 fa-icon {
                     font-size: 18px;
                     padding-right: 3%;
@@ -68,6 +73,44 @@ nav {
                 
         .general {
             padding-top: 19%;
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    nav {
+        width: 5vw;
+        text-align: center;
+
+        img {
+            width: 65%;
+            content: url("/assets/logo-black.svg");
+            padding-top: 80%;
+        }
+    
+        .category {
+            padding: 0;
+
+            p {
+                display: none;
+            }
+    
+            .menu-items {
+    
+                a {
+                    justify-content: center;
+                    width: 100%;
+                    margin: 35% 1.5%;
+
+                    p {
+                        display: none;
+                    }
+                    
+                    fa-icon {
+                        padding-right: 0;
+                    }
+                }
+            }
         }
     }
 }
