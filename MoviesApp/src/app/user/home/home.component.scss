@@ -6,16 +6,16 @@
 .main {
     display: flex;
     flex-direction: row;
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto -20px;
+    overflow-y: hidden;
 
     .main-content {
         color: white;
         width: 54vw;
+        height: 92vh;
         padding: 4% 5% 0 5%;
         border-right: 1.5px solid rgba(221, 221, 221, 0.11);
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .right-content {
@@ -24,10 +24,13 @@
         top: 0;
         align-self: flex-start;
         box-sizing: border-box;
-        padding: 4% 3%;
+        padding: 4% 2%;
+        padding-bottom: 0;
         width: 18vw;
+        height: 100vh;
 
         .popular {
+            height: 47vh;
 
             h4 {
                 padding: 0;
@@ -36,35 +39,50 @@
                 margin-bottom: 15%;
             }
 
-            .act-card {
-                height: 10%;
-                display: flex;
-                margin-bottom: 12%;
+            .cards {
+                height: 35vh;
+                overflow-y: auto;
+                width: 100%;
 
-                img {
-                    width: 35%;
-                    border-radius: 10px;
-                }
-
-                .act-info {
-                    padding: 5% 0 5% 10%;
+                .act-card {
+                    height: 25%;
                     display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
+                    margin-bottom: 12%;
 
-                    p {
-                        margin: 0;
-                        font-size: 15px;
+                    img {
+                        width: 24%;
+                        border-radius: 10px;
                     }
 
-                    small {
-                        font-size: 13px;
-                        color: #5E5F60;
-                        font-weight: 800;
+                    .act-info {
+                        padding: 2% 0 2% 10%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+
+                        p {
+                            margin: 0;
+                            font-size: 15px;
+                        }
+
+                        small {
+                            font-size: 13px;
+                            color: #5E5F60;
+                            font-weight: 800;
+                        }
                     }
                 }
             }
         }
+    }
+
+    .cards::-webkit-scrollbar, .main-content::-webkit-scrollbar {
+        width: 5px;
+    }
+    
+    .cards::-webkit-scrollbar-thumb, .main-content::-webkit-scrollbar-thumb {
+        background-color: #5E5F60;
+        border-radius: 100px;
     }
 }
 

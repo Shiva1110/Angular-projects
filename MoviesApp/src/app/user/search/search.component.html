@@ -1,1 +1,24 @@
-<p>search works!</p>
+<div class="search-main">
+    <div class="search-box">
+        <input type="text" placeholder="Search Movies..." [formControl]="searchControl">
+        <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+    </div>
+    <div class="search-res">
+        <div *ngFor="let movie of topSearchResults;" class="movie-card">
+            <img [src]="imagePath+'/w780'+movie?.poster_path" onerror="this.src='/assets/no-poster.svg';" alt="">
+            <div class="movie-info">
+                <h4 *ngIf="movie?.title === movie?.original_title; else brackets">{{ movie?.title }}</h4>
+                <ng-template #brackets><h4>{{ movie?.original_title }} ({{ movie?.title }})</h4></ng-template>
+                <p>{{ movie?.overview }}</p>
+                <p>Released: {{ movie?.release_date }}</p>
+                <div class="rating">
+                    <img src="/assets/tmdb-black.svg" alt="">
+                    <small>{{ movie?.vote_average | number : '1.1-1' }}</small>
+                </div>
+            </div>
+        </div>
+        <div class="spinner">
+            <mat-spinner *ngIf="isSearching"></mat-spinner>
+        </div>
+    </div>
+</div>

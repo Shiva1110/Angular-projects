@@ -10,6 +10,8 @@ import { ProfileSettingsComponent } from './profile-settings/profile-settings.co
 import { ActualHomeComponent } from './actual-home/actual-home.component';
 import { ServicesModule } from '../services/services.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -27,7 +29,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ComponentsModule,
     UserRoutingModule,
     ServicesModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ]
 })
 export class UserModule { }

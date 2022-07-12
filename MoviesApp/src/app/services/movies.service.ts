@@ -85,4 +85,8 @@ export class MoviesService {
     return this.http.get<ITrendActors>(`https://api.themoviedb.org/3/person/popular?api_key=bbaeb64e592f1b183c66c701b48e5cd3&page=${page}`);
     return this.http.get<ITrendActors>(`https://api.themoviedb.org/3/person/popular?api_key=bbaeb64e592f1b183c66c701b48e5cd3`);
   }
+
+  getMovieSearchResults(query: string): Observable<ITrendMovies> {
+    return this.http.get<ITrendMovies>(`https://api.themoviedb.org/3/search/movie?api_key=bbaeb64e592f1b183c66c701b48e5cd3&query=${query}`);
+  }
 }
