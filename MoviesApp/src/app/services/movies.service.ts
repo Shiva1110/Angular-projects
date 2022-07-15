@@ -72,21 +72,19 @@ export interface ITrendMovieRes {
 })
 export class MoviesService {
 
+  baseUrl: string = `https://movies-app-node-backend.herokuapp.com/`;
+
   constructor(private http: HttpClient) { }
 
   getTrendingMovies(time: string, page?: number): Observable<ITrendMovies> {
-    if(page)
-    return this.http.get<ITrendMovies>(`https://api.themoviedb.org/3/trending/movie/${time}?api_key=bbaeb64e592f1b183c66c701b48e5cd3&page=${page}`);
-    return this.http.get<ITrendMovies>(`https://api.themoviedb.org/3/trending/movie/${time}?api_key=bbaeb64e592f1b183c66c701b48e5cd3`);
+    return this.http.get<ITrendMovies>(`${this.baseUrl}movies/${time}/${page ? page : 1}`);
   }
 
   getTrendingPeople(page?: number): Observable<ITrendActors> {
-    if(page)
-    return this.http.get<ITrendActors>(`https://api.themoviedb.org/3/person/popular?api_key=bbaeb64e592f1b183c66c701b48e5cd3&page=${page}`);
-    return this.http.get<ITrendActors>(`https://api.themoviedb.org/3/person/popular?api_key=bbaeb64e592f1b183c66c701b48e5cd3`);
+    return this.http.get<ITrendActors>(`${this.baseUrl}people/${page ? page : 1}`);
   }
 
   getMovieSearchResults(query: string): Observable<ITrendMovies> {
-    return this.http.get<ITrendMovies>(`https://api.themoviedb.org/3/search/movie?api_key=bbaeb64e592f1b183c66c701b48e5cd3&query=${query}`);
+    return this.http.get<ITrendMovies>(`${this.baseUrl}search/${query}`);
   }
 }

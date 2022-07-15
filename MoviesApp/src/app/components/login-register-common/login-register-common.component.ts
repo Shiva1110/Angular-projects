@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -19,8 +21,8 @@ export class LoginRegisterCommonComponent implements OnInit {
   hideRegPass: boolean = true;
   hideRegRepass: boolean = true;
 
-  constructor(private formBuilder: FormBuilder) {
-    this.registrationForm = formBuilder.group({
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+    this.registrationForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
       password: ['', Validators.required],
@@ -31,8 +33,8 @@ export class LoginRegisterCommonComponent implements OnInit {
       validators: this.passwordMatch('password', 'rePassword')
     });
 
-    this.loginForm = formBuilder.group({
-      email: ['', Validators.required],
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
       password: ['', Validators.required],
     });
   }
@@ -73,7 +75,11 @@ export class LoginRegisterCommonComponent implements OnInit {
       email: this.registrationForm.value.email,
       password: this.registrationForm.value.password
     }
-    console.log(data);
+    this.authService.registerUser(data).subscribe((res) => {
+      this.router.navigate(['login']);
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   logInUser() {
@@ -81,7 +87,12 @@ export class LoginRegisterCommonComponent implements OnInit {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password
     }
-    console.log(data);
+    this.authService.userLogin(data).subscribe((res) => {
+      localStorage.setItem('auth-token', res.token);
+      this.router.navigate(['user', 'home']);
+    }, (err) => {
+      console.log(err);
+    });
   }
 
 }

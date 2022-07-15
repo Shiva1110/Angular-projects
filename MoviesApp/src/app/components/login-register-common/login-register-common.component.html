@@ -45,7 +45,8 @@
             <form *ngIf="page === 'login'" [formGroup]="loginForm" class="login">
                 <label for="email">Email</label>
                 <input formControlName="email" type="text" name="email" id="email">
-                <small *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">This field is required</small>
+                <small *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched && loginForm.get('email')?.hasError('required')">This field is required</small>
+                <small *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched && loginForm.get('email')?.hasError('pattern')">Enter valid email</small>
     
                 <label for="password">Password</label>
                 <div class="password">
