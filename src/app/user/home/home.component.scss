@@ -18,6 +18,17 @@
         overflow-x: hidden;
     }
 
+    .spinner {
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+    
+        mat-spinner::ng-deep circle{
+            stroke: #a38ad8 !important;
+        }
+    }
+
     .right-content {
         color: white;
         position: sticky;
