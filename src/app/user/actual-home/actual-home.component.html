@@ -1,4 +1,4 @@
-<div class="home-main">
+<div class="home-main" *ngIf="topFive?.length; else spinner">
     <div class="top-five">
         <div class="card" #topFiveHtml *ngFor="let movie of topFive; let i = index">
             <img [src]="imagePath+'/w780'+movie?.backdrop_path" alt="backdrop">
@@ -73,3 +73,8 @@
         </div>
     </div>
 </div>
+<ng-template #spinner>
+    <div class="spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>

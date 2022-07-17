@@ -271,6 +271,17 @@
     }
 }
 
+.spinner {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+
+    mat-spinner::ng-deep circle{
+        stroke: #a38ad8 !important;
+    }
+}
+
 @keyframes move {
     from {
         opacity: 0;
