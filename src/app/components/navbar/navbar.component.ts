@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faHouse, faMagnifyingGlass, faStar, faStopwatch, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -16,13 +17,14 @@ export class NavbarComponent implements OnInit {
   faGear = faGear;
   faRightFromBracket = faRightFromBracket;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   userLogOut() {
     this.authService.logOut();
+    this.router.navigate(["/"]);
   }
 
 }
