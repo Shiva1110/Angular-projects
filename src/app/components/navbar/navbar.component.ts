@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faHouse, faMagnifyingGlass, faStar, faStopwatch, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,9 +16,13 @@ export class NavbarComponent implements OnInit {
   faGear = faGear;
   faRightFromBracket = faRightFromBracket;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+  }
+
+  userLogOut() {
+    this.authService.logOut();
   }
 
 }

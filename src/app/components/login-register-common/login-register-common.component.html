@@ -5,7 +5,7 @@
             <p *ngIf="page === 'login'">Hi There! Welcome Back.</p>
             <p *ngIf="page === 'register'">New User Registration.</p>
             <div class="btn-group">
-                <a routerLink="/login" routerLinkActive="active">LOG IN</a>
+                <a routerLink="/" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active">LOG IN</a>
                 <a routerLink="/register" routerLinkActive="active">SIGN UP</a>
             </div>
             <small>TERMS OF USE AND CONTRAINDICATIONS</small>

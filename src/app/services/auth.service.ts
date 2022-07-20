@@ -40,4 +40,16 @@ export class AuthService {
   registerUser(payload: IUserRegister): Observable<IUserRegisterRes> {
     return this.http.post<IUserRegisterRes>(`${this.baseUrl}register`, payload);
   }
+
+  isUserLoggedIn() {
+    return !!localStorage.getItem('auth-token');
+  }
+
+  getUserToken() {
+    return localStorage.getItem('auth-token');
+  }
+
+  logOut() {
+    localStorage.removeItem('auth-token');
+  }
 }
