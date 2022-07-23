@@ -1,7 +1,8 @@
 <div class="search-main">
     <div class="search-box">
         <input type="text" placeholder="Search Movies..." [formControl]="searchControl">
-        <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+        <fa-icon class="search-icon" [icon]="faMagnifyingGlass"></fa-icon>
+        <fa-icon *ngIf="searchControl?.value" (click)="clear()" class="clear" [icon]="faXmark"></fa-icon>
     </div>
     <div class="search-res">
         <div *ngFor="let movie of topSearchResults;" class="movie-card">
@@ -16,6 +17,12 @@
                     <small>{{ movie?.vote_average | number : '1.1-1' }}</small>
                 </div>
             </div>
+            <button *ngIf="!movie?.isFavorite" (click)="addToFavorites(movie)">
+                <fa-icon [icon]="faBookmark"></fa-icon>
+            </button>
+            <button class="remove" *ngIf="movie?.isFavorite" (click)="remFromFavorites(movie)">
+                <fa-icon [icon]="faStoreSlash"></fa-icon>
+            </button>
         </div>
         <div class="spinner">
             <mat-spinner *ngIf="isSearching"></mat-spinner>

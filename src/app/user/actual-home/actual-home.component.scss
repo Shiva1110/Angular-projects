@@ -58,7 +58,7 @@
                     border-radius: 10px;
                     color: white;
                     margin-top: 1.5%;
-                    padding: 1.5%;
+                    padding: 1.55%;
                     font-family: 'Nunito', Arial, Helvetica, sans-serif;
                     font-size: 13px;
                     font-weight: 500;
@@ -67,7 +67,7 @@
                     width: 20%;
 
                     fa-icon {
-                        padding-right: 3%;
+                        padding-right: 5%;
                     }
                 }
 
@@ -75,9 +75,29 @@
                     transform: scale(1.05);
                 }
 
-                .rating {
-                    padding-left: 2%;
-                    font-weight: 600;
+                .remove {
+                    width: 25%;
+                }
+
+                .genre-rating {
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        height: 100%;
+                        width: 6%;
+                        object-fit: cover;
+                        border-radius: 3px;
+                        margin: 0 0.7% 0 2%;
+                        opacity: 1;
+                        animation: none;
+                    }
+
+                    small {
+                        span {
+                            margin-right: 3px;
+                        }
+                    }
                 }
             }
         }
@@ -187,7 +207,7 @@
                 .movie-det {
                     position: absolute;
                     box-sizing: border-box;
-                    bottom: 0;
+                    bottom: -1px;
                     left: 0;
                     width: 100%;
                     height: 45%;
@@ -218,6 +238,20 @@
 
                         p {
                             font-size: 13px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding-bottom: 3%;
+
+                            img {
+                                height: 100%;
+                                width: 30%;
+                                object-fit: cover;
+                                border-radius: 4px;
+                                margin-right: 5px;
+                                opacity: 1;
+                                animation: none;
+                            }
                         }
                     }
 

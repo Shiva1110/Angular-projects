@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { faAngleLeft, faAngleRight, faStar } from '@fortawesome/free-solid-svg-icons';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { faAngleLeft, faAngleRight, faBookmark, faStoreSlash } from '@fortawesome/free-solid-svg-icons';
+import { forkJoin } from 'rxjs';
 import { MOVIE_GENRES } from 'src/app/services/cnstants';
 import { ITrendMovieRes, MoviesService } from 'src/app/services/movies.service';
 
@@ -20,7 +21,8 @@ export class ActualHomeComponent implements OnInit, AfterViewInit {
   topMoviesWeeklyAll: ITrendMovieRes[] = [];
   faAngleLeft = faAngleLeft;
   faAngleRight = faAngleRight;
-  faStar = faStar;
+  faBookmark = faBookmark;
+  faStoreSlash = faStoreSlash;
   imageIndex: number = 1;
   dailyStartIndex: number = 0;
   dailyEndIndex: number = 4;
@@ -30,10 +32,19 @@ export class ActualHomeComponent implements OnInit, AfterViewInit {
   constructor(private movieService: MoviesService) { }
 
   ngOnInit(): void {
-    this.movieService.getTrendingMovies('day').subscribe((res) => {
-      this.topMoviesDailyAll = res.results;
-      this.topMoviesDaily = res.results.slice(this.dailyStartIndex, this.dailyEndIndex);
-      this.topFive = res.results.slice(0,5);
+    forkJoin({
+      trendingMoviesDay: this.movieService.getTrendingMovies('day'),
+      trendingMoviesWeek: this.movieService.getTrendingMovies('week'),
+      userFavorites: this.movieService.getFavorites()
+    }).subscribe(res => {
+      this.topMoviesDailyAll = res.trendingMoviesDay.results.map(movie => {
+        res.userFavorites.forEach(favMovie => {
+          if(movie.id === favMovie.id) movie.isFavorite = true;
+        });
+        return movie;
+      });
+      this.topMoviesDaily = this.topMoviesDailyAll.slice(this.dailyStartIndex, this.dailyEndIndex);
+      this.topFive = this.topMoviesDailyAll.slice(0,5);
       this.topFive = this.topFive.map((movie) => {
         let genres: string[] = [];
         movie.genre_ids.forEach((id) => MOVIE_GENRES.forEach((genre) => {
@@ -42,11 +53,16 @@ export class ActualHomeComponent implements OnInit, AfterViewInit {
         movie.genres = genres;
         return movie;
       });
-    });
 
-    this.movieService.getTrendingMovies('week').subscribe((res) => {
-      this.topMoviesWeeklyAll = res.results;
-      this.topMoviesWeekly = res.results.slice(this.dailyStartIndex, this.dailyEndIndex);
+      console.log(this.topFive)
+
+      this.topMoviesWeeklyAll = res.trendingMoviesWeek.results.map(movie => {
+        res.userFavorites.forEach(favMovie => {
+          movie.id === favMovie.id ? movie.isFavorite = true : movie.isFavorite = false;
+        });
+        return movie;
+      });
+      this.topMoviesWeekly = this.topMoviesWeeklyAll.slice(this.dailyStartIndex, this.dailyEndIndex);
     });
   }
 
@@ -91,7 +107,6 @@ export class ActualHomeComponent implements OnInit, AfterViewInit {
         this.movieService.getTrendingMovies('day', this.dailyStartIndex/2).subscribe((res) => {
           this.topMoviesDailyAll.push(...res.results);
           this.topMoviesDaily = this.topMoviesDailyAll.slice(this.dailyStartIndex, this.dailyEndIndex);
-          console.log(this.topMoviesDailyAll);
         });
       } else {
         this.topMoviesDaily = this.topMoviesDailyAll.slice(this.dailyStartIndex, this.dailyEndIndex);
@@ -103,7 +118,6 @@ export class ActualHomeComponent implements OnInit, AfterViewInit {
         this.movieService.getTrendingMovies('week', this.weeklyStartIndex/2).subscribe((res) => {
           this.topMoviesWeeklyAll.push(...res.results);
           this.topMoviesWeekly = this.topMoviesWeeklyAll.slice(this.weeklyStartIndex, this.weeklyEndIndex);
-          console.log(this.topMoviesWeeklyAll);
         });
       } else {
         this.topMoviesWeekly = this.topMoviesWeeklyAll.slice(this.weeklyStartIndex, this.weeklyEndIndex);
@@ -125,6 +139,20 @@ export class ActualHomeComponent implements OnInit, AfterViewInit {
         this.topMoviesWeekly = this.topMoviesWeeklyAll.slice(this.weeklyStartIndex, this.weeklyEndIndex);
       }
     }
+  }
+
+  addToFavorites(movie: ITrendMovieRes) {
+    movie.isFavorite = true;
+    this.movieService.addFavorite(movie).subscribe(res => {
+      console.log(res);
+    });
+  }
+
+  remFromFavorites(movie: ITrendMovieRes) {
+    movie.isFavorite = false;
+    this.movieService.removeFavorite(movie.id).subscribe(res => {
+      console.log(res);
+    });
   }
 
 }

@@ -25,17 +25,24 @@
             border: 2px solid white;
         }
 
-        input:focus + fa-icon {
+        input:focus + .search-icon {
             color: white;
         }
 
-        fa-icon {
+        .search-icon, .clear {
             position: absolute;
             top: 20%;
             left: 2%;
             font-size: 18px;
             color: #5E5F60;
             transition: all 0.25s ease-in;
+        }
+
+        .clear {
+            position: absolute;
+            left: 96%;
+            cursor: pointer;
+            color: white;
         }
     }
 
@@ -60,7 +67,7 @@
             }
 
             .movie-info {
-                padding: 2% 0 2% 4%;
+                padding: 2% 2% 2% 4%;
                 display: flex;
                 width: 100%;
                 flex-direction: column;
@@ -91,6 +98,30 @@
                         margin-right: 1%;
                     }
                 }
+            }
+
+            button {
+                border: none;
+                outline: none;
+                border-radius: 8px;
+                background: rgb(106, 62, 200);
+                color: white;
+                font-family: 'Nunito', Arial, Helvetica, sans-serif;
+                cursor: pointer;
+                transition: 0.3s all ease 0s;
+                width: 5%;
+                height: 17%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                fa-icon {
+                    font-size: 16px;
+                }
+            }
+
+            button:hover {
+                transform: scale(1.05);
             }
         }
 

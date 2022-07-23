@@ -65,6 +65,7 @@ export interface ITrendMovieRes {
   release_date?: string;
   video?: boolean;
   genres?: string[];
+  isFavorite?: boolean;
 }
 
 @Injectable({
@@ -86,5 +87,17 @@ export class MoviesService {
 
   getMovieSearchResults(query: string): Observable<ITrendMovies> {
     return this.http.get<ITrendMovies>(`${this.baseUrl}search/${query}`);
+  }
+
+  addFavorite(body: ITrendMovieRes): Observable<ITrendMovieRes[]> {
+    return this.http.post<ITrendMovieRes[]>(`${this.baseUrl}user/addFav`, body);
+  }
+
+  removeFavorite(id: number): Observable<ITrendMovieRes[]> {
+    return this.http.delete<ITrendMovieRes[]>(`${this.baseUrl}user/removeFav/${id}`);
+  }
+
+  getFavorites(): Observable<ITrendMovieRes[]> {
+    return this.http.get<ITrendMovieRes[]>(`${this.baseUrl}user/favorites`);
   }
 }

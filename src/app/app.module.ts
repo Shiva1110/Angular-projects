@@ -8,6 +8,7 @@ import { UserModule } from './user/user.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptor } from './guards/token.interceptor';
+import { LoggedInGuard } from './guards/logged-in.guard';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { TokenInterceptor } from './guards/token.interceptor';
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
-  }],
+  }, LoggedInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

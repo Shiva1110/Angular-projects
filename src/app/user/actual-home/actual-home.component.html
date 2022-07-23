@@ -4,9 +4,16 @@
             <img [src]="imagePath+'/w780'+movie?.backdrop_path" alt="backdrop">
             <div class="movie-info">
                 <p>{{ movie?.original_title }}</p>
-                <small *ngFor="let genre of movie?.genres; let j = index">{{genre}}<span *ngIf="+j+1 !== movie?.genres?.length">, </span></small>
-                <span class="rating">Rating: {{ movie?.vote_average | number : '1.1-1' }}</span>
-                <button><fa-icon [icon]="faStar"></fa-icon>Add To Favorites</button>
+                <span class="genre-rating">
+                    <small *ngFor="let genre of movie?.genres; let j = index">{{genre}}<span *ngIf="+j+1 !== movie?.genres?.length">,</span></small>
+                    <img src="/assets/tmdb-black.svg" alt="">{{ movie?.vote_average | number : '1.1-1' }}
+                </span>
+                <button *ngIf="!movie?.isFavorite" (click)="addToFavorites(movie)">
+                    <fa-icon [icon]="faBookmark"></fa-icon>Add To Favorites
+                </button>
+                <button class="remove" *ngIf="movie?.isFavorite" (click)="remFromFavorites(movie)">
+                    <fa-icon [icon]="faStoreSlash"></fa-icon>Remove From Favorites
+                </button>
             </div>
         </div>
         <div (click)="slideImages(-1)" class="slide left-arrow">
@@ -35,12 +42,17 @@
                     <div class="details">
                         <h4>{{ movie?.original_title }}</h4>
                         <div>
-                            <p>Rating: {{ movie?.vote_average | number : '1.1-1' }}</p>
+                            <p><img src="/assets/tmdb-black.svg" alt=""> {{ movie?.vote_average | number : '1.1-1' }}</p>
                             <p>Votes: {{ movie?.vote_count }}</p>
                         </div>
                     </div>
                 </div>
-                <button><fa-icon [icon]="faStar"></fa-icon></button>
+                <button *ngIf="!movie?.isFavorite" (click)="addToFavorites(movie)">
+                    <fa-icon [icon]="faBookmark"></fa-icon>
+                </button>
+                <button class="remove" *ngIf="movie?.isFavorite" (click)="remFromFavorites(movie)">
+                    <fa-icon [icon]="faStoreSlash"></fa-icon>
+                </button>
             </div>
         </div>
     </div>
@@ -63,12 +75,17 @@
                     <div class="details">
                         <h4>{{ movie?.original_title }}</h4>
                         <div>
-                            <p>Rating: {{ movie?.vote_average | number : '1.1-1' }}</p>
+                            <p><img src="/assets/tmdb-black.svg" alt=""> {{ movie?.vote_average | number : '1.1-1' }}</p>
                             <p>Votes: {{ movie?.vote_count }}</p>
                         </div>
                     </div>
                 </div>
-                <button><fa-icon [icon]="faStar"></fa-icon></button>
+                <button *ngIf="!movie?.isFavorite" (click)="addToFavorites(movie)">
+                    <fa-icon [icon]="faBookmark"></fa-icon>
+                </button>
+                <button class="remove" *ngIf="movie?.isFavorite" (click)="remFromFavorites(movie)">
+                    <fa-icon [icon]="faStoreSlash"></fa-icon>
+                </button>
             </div>
         </div>
     </div>

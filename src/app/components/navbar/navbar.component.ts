@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faHouse, faMagnifyingGlass, faStar, faStopwatch, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faMagnifyingGlass, faBookmark, faStopwatch, faGear, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
 
   faHouse = faHouse;
   faMagnifyingGlass = faMagnifyingGlass;
-  faStar = faStar;
+  faBookmark = faBookmark;
   faStopwatch = faStopwatch;
   faGear = faGear;
   faRightFromBracket = faRightFromBracket;
