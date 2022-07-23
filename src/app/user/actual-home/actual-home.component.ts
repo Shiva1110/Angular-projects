@@ -28,6 +28,7 @@ export class ActualHomeComponent implements OnInit, AfterViewInit {
   dailyEndIndex: number = 4;
   weeklyStartIndex: number = 0;
   weeklyEndIndex: number = 4;
+  favorites: ITrendMovieRes[] = [];
 
   constructor(private movieService: MoviesService) { }
 
@@ -37,6 +38,7 @@ export class ActualHomeComponent implements OnInit, AfterViewInit {
       trendingMoviesWeek: this.movieService.getTrendingMovies('week'),
       userFavorites: this.movieService.getFavorites()
     }).subscribe(res => {
+      this.favorites = res.userFavorites;
       this.topMoviesDailyAll = res.trendingMoviesDay.results.map(movie => {
         res.userFavorites.forEach(favMovie => {
           if(movie.id === favMovie.id) movie.isFavorite = true;
@@ -105,7 +107,13 @@ export class ActualHomeComponent implements OnInit, AfterViewInit {
       this.dailyEndIndex = this.dailyEndIndex + 4;
       if(this.dailyStartIndex === this.topMoviesDailyAll.length) {
         this.movieService.getTrendingMovies('day', this.dailyStartIndex/2).subscribe((res) => {
-          this.topMoviesDailyAll.push(...res.results);
+          let modifiedList = res.results.map(movie => {
+            this.favorites.forEach(favMovie => {
+              if(movie.id === favMovie.id) movie.isFavorite = true;
+            });
+            return movie;
+          });
+          this.topMoviesDailyAll.push(...modifiedList);
           this.topMoviesDaily = this.topMoviesDailyAll.slice(this.dailyStartIndex, this.dailyEndIndex);
         });
       } else {
@@ -116,7 +124,13 @@ export class ActualHomeComponent implements OnInit, AfterViewInit {
       this.weeklyEndIndex = this.weeklyEndIndex + 4;
       if(this.weeklyStartIndex === this.topMoviesWeeklyAll.length) {
         this.movieService.getTrendingMovies('week', this.weeklyStartIndex/2).subscribe((res) => {
-          this.topMoviesWeeklyAll.push(...res.results);
+          let modifiedList = res.results.map(movie => {
+            this.favorites.forEach(favMovie => {
+              if(movie.id === favMovie.id) movie.isFavorite = true;
+            });
+            return movie;
+          });
+          this.topMoviesWeeklyAll.push(...modifiedList);
           this.topMoviesWeekly = this.topMoviesWeeklyAll.slice(this.weeklyStartIndex, this.weeklyEndIndex);
         });
       } else {
