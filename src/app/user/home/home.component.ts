@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ITrendActors, ITrendActorsRes, MoviesService } from 'src/app/services/movies.service';
+import { Observable } from 'rxjs';
+import { ITrendActors, ITrendActorsRes, ITrendMovieRes, MoviesService } from 'src/app/services/movies.service';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,7 @@ export class HomeComponent implements OnInit {
 
   topActors: ITrendActorsRes[] = [];
   Actors: ITrendActorsRes[] = [];
+  topFavorites = new Observable<ITrendMovieRes[]>();
   imagePath: string = 'https://image.tmdb.org/t/p';
 
   constructor(private movieService: MoviesService, private router: Router) { }
@@ -20,6 +22,12 @@ export class HomeComponent implements OnInit {
       this.topActors = res.results.slice(0, 9);
       this.Actors = res.results;
     });
+
+    this.topFavorites = this.movieService.getFavorites();
+
+    this.movieService.updateFav$.subscribe(res => {
+      this.topFavorites = this.movieService.getFavorites()
+    })
 
     this.router.navigate(['user/home']);
   }

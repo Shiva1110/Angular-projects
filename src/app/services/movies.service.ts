@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 export interface ITrendActors {
   page: number,
@@ -74,6 +74,7 @@ export interface ITrendMovieRes {
 export class MoviesService {
 
   baseUrl: string = `https://movies-app-node-backend.herokuapp.com/`;
+  updateFav$ = new Subject();
 
   constructor(private http: HttpClient) { }
 
@@ -99,5 +100,9 @@ export class MoviesService {
 
   getFavorites(): Observable<ITrendMovieRes[]> {
     return this.http.get<ITrendMovieRes[]>(`${this.baseUrl}user/favorites`);
+  }
+
+  updateFavMov() {
+    this.updateFav$.next('update');
   }
 }

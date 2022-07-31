@@ -160,6 +160,7 @@ export class ActualHomeComponent implements OnInit, AfterViewInit {
     this.movieService.addFavorite(movie).subscribe(res => {
       console.log(res);
     });
+    this.movieService.updateFavMov();
   }
 
   remFromFavorites(movie: ITrendMovieRes) {
@@ -167,6 +168,7 @@ export class ActualHomeComponent implements OnInit, AfterViewInit {
     this.movieService.removeFavorite(movie.id).subscribe(res => {
       console.log(res);
     });
+    this.movieService.updateFavMov();
   }
 
 }

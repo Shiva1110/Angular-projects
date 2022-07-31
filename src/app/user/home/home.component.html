@@ -21,11 +21,11 @@
         <div class="popular" *ngIf="topActors?.length">
             <h4>Top Favorites</h4>
             <div class="cards">
-                <div class="act-card" *ngFor="let actor of topActors; let i = index">
-                    <img [src]="imagePath+'/w780'+actor?.profile_path" alt="">
-                    <div class="act-info">
-                        <p>{{ actor?.name }}</p>
-                        <small>Points: {{ actor?.popularity | number : '1.1-1' }}</small>
+                <div class="fav-card" *ngFor="let movie of topFavorites | async; let i = index">
+                    <img [src]="imagePath+'/w780'+movie?.poster_path" alt="">
+                    <div class="fav-info">
+                        <p>{{ movie?.original_title }}</p>
+                        <small>Rating: {{ movie?.vote_average | number : '1.1-1' }}</small>
                     </div>
                 </div>
             </div>
